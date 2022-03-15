@@ -1,12 +1,11 @@
 import { firebaseApp } from "./firebase/init"
+import { RouterConfig } from "./navigation/RouterConfig";
+import { Provider } from "react-redux";
 
 function App() {
-
   return (
-    <div>
-      <h1>ini div</h1>
-    </div>
-  )
+      <RouterConfig />
+  );
 }
 
-export default App
+export default App;
