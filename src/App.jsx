@@ -1,3 +1,4 @@
+import { firebaseApp } from "./firebase/init"
 import { RouterConfig } from "./navigation/RouterConfig";
 import { Provider } from "react-redux";
 
