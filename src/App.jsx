@@ -1,3 +1,4 @@
+import { firebaseApp } from "./firebase/init"
 
 function App() {
 
