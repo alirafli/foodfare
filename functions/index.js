@@ -1,4 +1,5 @@
 const functions = require("firebase-functions");
+const {whenUserCreated} = require("./user");
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -8,13 +9,4 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
-exports.createUser = functions.auth.user().onCreate((user) => {
-  const admin = require("firebase-admin");
-  const uid = user.uid;
-  admin.initializeApp();
-  admin.firestore().collection("users").add({
-    uid: uid,
-    isAdmin: false,
-    points: 0,
-  });
-});
+exports.createUser = whenUserCreated;
