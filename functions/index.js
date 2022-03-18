@@ -7,3 +7,14 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   functions.logger.info("Hello logs!", {structuredData: true});
   response.send("Hello from Firebase!");
 });
+
+exports.createUser = functions.auth.user().onCreate((user) => {
+  const admin = require("firebase-admin");
+  const uid = user.uid;
+  admin.initializeApp();
+  admin.firestore().collection("user").add({
+    uid: uid,
+    isAdmin: false,
+    points: 0,
+  });
+});
