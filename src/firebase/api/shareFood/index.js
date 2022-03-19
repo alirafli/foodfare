@@ -1,33 +1,45 @@
-import sha256 from 'crypto-js/sha256';
-import hmacSHA512 from 'crypto-js/hmac-sha512';
-import Base64 from 'crypto-js/enc-base64';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from 'firebase/firestore';
 import { SECRET } from '../../env';
-import { firebaseApp } from '../../init';
+import { database, firebaseApp } from '../../init';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
 
+const uploadFile = (file, folder) => {
+  const storage = getStorage();
+  const storageRef = ref(storage, folder);
 
-/**
- *
- * @param {JSON} formData
- *
- */
-const uploadFile = (file) => {
+  return uploadBytes(storageRef, file);
+};
 
-}
-export const createShareFood = (formData) => {
-  const {
-    titile,
+export const createShareFood = async ({
+  title,
+  boughtDate,
+  expiredDate,
+  condition,
+  pickUpTime,
+  caption,
+  location,
+  photos,
+}) => {
+  const fileName = uuidv4();
+
+  const responsePhoto = await uploadFile(photos, `images/${fileName}`);
+  const fullPath = responsePhoto.metadata.fullPath;
+
+  const response = await setDoc(doc(database, 'shareFoods'), {
+    title,
     boughtDate,
     expiredDate,
     condition,
     pickUpTime,
     caption,
     location,
-    photos,
-  } = formData;
-
-	const hash = sha256(1 + SECRET);
-	const fileName = Base64.stringify(hmacSHA512(hash, SECRET));
-
-		
+    photo: fullPath,
+  });
 };
