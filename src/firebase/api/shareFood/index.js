@@ -10,14 +10,14 @@ import { database, firebaseApp } from '../../init';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
-const uploadFile = (file, folder) => {
+const uploadFile = (file, folderName) => {
   const storage = getStorage();
-  const storageRef = ref(storage, folder);
+  const storageRef = ref(storage, folderName);
 
   return uploadBytes(storageRef, file);
 };
 
-export const createShareFood = async ({
+export const createShareFood = async (
   title,
   boughtDate,
   expiredDate,
@@ -26,7 +26,7 @@ export const createShareFood = async ({
   caption,
   location,
   photos,
-}) => {
+) => {
   const fileName = uuidv4();
 
   const responsePhoto = await uploadFile(photos, `images/${fileName}`);
