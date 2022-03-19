@@ -4,6 +4,7 @@ import {
   getDocs,
   getFirestore,
   setDoc,
+  Timestamp,
 } from 'firebase/firestore';
 import { SECRET } from '../../env';
 import { database, firebaseApp } from '../../init';
@@ -17,6 +18,18 @@ const uploadFile = (file, folderName) => {
   return uploadBytes(storageRef, file);
 };
 
+
+/**
+ * 
+ * @param {String} title 
+ * @param {Timestamp} boughtDate 
+ * @param {Timestamp} expiredDate 
+ * @param {String} condition 
+ * @param {String} pickUpTime 
+ * @param {String} caption 
+ * @param {Geolocation} location 
+ * @param {File} photos 
+ */
 export const createShareFood = async (
   title,
   boughtDate,
