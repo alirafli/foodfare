@@ -1,4 +1,4 @@
-import { doc, setDoc, Timestamp } from 'firebase/firestore';
+import { deleteDoc, doc, serverTimestamp, setDoc, Timestamp, updateDoc } from 'firebase/firestore';
 import { database } from '../../init';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
@@ -36,14 +36,15 @@ export const createShareFood = async (
   pickUpTime,
   caption,
   location,
-  photos
+  photos,
+  {displayName, uid, photoUrl}
 ) => {
   const fileName = uuidv4();
 
   const responsePhoto = await uploadFile(photos, `images/${fileName}`);
   const fullPath = responsePhoto.metadata.fullPath;
 
-  const response = await setDoc(doc(database, 'shareFoods'), {
+  return await setDoc(doc(database, 'shareFoods'), {
     title,
     boughtDate,
     expiredDate,
@@ -52,5 +53,18 @@ export const createShareFood = async (
     caption,
     location,
     photo: fullPath,
+    createdAt: serverTimestamp(),
+    status: 'open',
+    user: {displayName, uid, photoUrl},
   });
+};
+
+export const cancelOrder = async (
+  uid,
+  docId
+) => {
+  const shareFoodRef = doc(db , "shareFoods", uid);
+  return await updateDoc(shareFoodRef, {
+    status: 'canceled'
+  })
 };
