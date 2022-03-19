@@ -1,16 +1,15 @@
-import {
-  collection,
-  doc,
-  getDocs,
-  getFirestore,
-  setDoc,
-  Timestamp,
-} from 'firebase/firestore';
-import { SECRET } from '../../env';
-import { database, firebaseApp } from '../../init';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
+import { database } from '../../init';
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 
+/**
+ *
+ * @param {File} file
+ * @param {String} folderName
+ * Path of the folder
+ * @returns
+ */
 const uploadFile = (file, folderName) => {
   const storage = getStorage();
   const storageRef = ref(storage, folderName);
@@ -18,17 +17,16 @@ const uploadFile = (file, folderName) => {
   return uploadBytes(storageRef, file);
 };
 
-
 /**
- * 
- * @param {String} title 
- * @param {Timestamp} boughtDate 
- * @param {Timestamp} expiredDate 
- * @param {String} condition 
- * @param {String} pickUpTime 
- * @param {String} caption 
- * @param {Geolocation} location 
- * @param {File} photos 
+ *
+ * @param {String} title
+ * @param {Timestamp} boughtDate
+ * @param {Timestamp} expiredDate
+ * @param {String} condition
+ * @param {String} pickUpTime
+ * @param {String} caption
+ * @param {Geolocation} location
+ * @param {File} photos
  */
 export const createShareFood = async (
   title,
@@ -38,7 +36,7 @@ export const createShareFood = async (
   pickUpTime,
   caption,
   location,
-  photos,
+  photos
 ) => {
   const fileName = uuidv4();
 
