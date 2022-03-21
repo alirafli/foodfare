@@ -1,4 +1,10 @@
-import { doc, serverTimestamp, setDoc, Timestamp, updateDoc } from 'firebase/firestore';
+import {
+  doc,
+  serverTimestamp,
+  setDoc,
+  Timestamp,
+  updateDoc,
+} from 'firebase/firestore';
 import { database } from '../../init';
 import { v4 as uuidv4 } from 'uuid';
 import { uploadFile } from './function';
@@ -23,7 +29,7 @@ export const createShareFood = async (
   caption,
   location,
   photos,
-  {displayName, uid, photoUrl}
+  { displayName, uid, photoUrl }
 ) => {
   const fileName = uuidv4();
 
@@ -41,15 +47,13 @@ export const createShareFood = async (
     photo: fullPath,
     createdAt: serverTimestamp(),
     status: 'open',
-    user: {displayName, uid, photoUrl},
+    user: { displayName, uid, photoUrl },
   });
 };
 
-export const cancelOrder = async (
-  docId
-) => {
-  const shareFoodRef = doc(db , "shareFoods", docId);
+export const cancelOrder = async (docId) => {
+  const shareFoodRef = doc(db, 'shareFoods', docId);
   return await updateDoc(shareFoodRef, {
-    status: 'canceled'
-  })
+    status: 'canceled',
+  });
 };
