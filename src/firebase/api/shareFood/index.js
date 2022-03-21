@@ -1,21 +1,7 @@
-import { deleteDoc, doc, serverTimestamp, setDoc, Timestamp, updateDoc } from 'firebase/firestore';
+import { doc, serverTimestamp, setDoc, Timestamp, updateDoc } from 'firebase/firestore';
 import { database } from '../../init';
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
-
-/**
- *
- * @param {File} file
- * @param {String} folderName
- * Path of the folder
- * @returns
- */
-const uploadFile = (file, folderName) => {
-  const storage = getStorage();
-  const storageRef = ref(storage, folderName);
-
-  return uploadBytes(storageRef, file);
-};
+import { uploadFile } from './function';
 
 /**
  *
@@ -60,10 +46,9 @@ export const createShareFood = async (
 };
 
 export const cancelOrder = async (
-  uid,
   docId
 ) => {
-  const shareFoodRef = doc(db , "shareFoods", uid);
+  const shareFoodRef = doc(db , "shareFoods", docId);
   return await updateDoc(shareFoodRef, {
     status: 'canceled'
   })
