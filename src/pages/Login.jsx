@@ -1,7 +1,7 @@
 import React from 'react'
+import { getSharefoods } from '../firebase/api/shareFood'
 
-const Login = () => {
-    
+const Login = () => { 
   return (
     <div>Login</div>
   )

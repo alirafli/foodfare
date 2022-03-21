@@ -9,3 +9,4 @@ export const firebaseConfig = {
 };
 
 export const SECRET = "640ca55a-ff4c-4f43-94af-a70e56fe0946";
+export const STORAGELINK = "gs://foodfare-37619.appspot.com";
