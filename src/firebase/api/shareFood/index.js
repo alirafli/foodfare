@@ -1,11 +1,11 @@
 import {
+  addDoc,
   collection,
   doc,
   getDocs,
   limit,
   query,
   serverTimestamp,
-  setDoc,
   Timestamp,
   updateDoc,
 } from 'firebase/firestore';
@@ -42,7 +42,7 @@ export const createShareFood = async (
   const responsePhoto = await uploadFile(photos, `images/${fileName}`);
   const fullPath = responsePhoto.metadata.fullPath;
 
-  return await setDoc(doc(database, 'shareFoods'), {
+  return await addDoc(collection(database, 'shareFoods'), {
     title,
     boughtDate,
     expiredDate,
@@ -70,7 +70,7 @@ export const cancelSharefood = async (docId) => {
  */
 export const getSharefoods = async (page) => {
   const itemPerPage = 9;
-  const shareFoods = query(collection(database, 'shareFoods'), limit(9));
+  const shareFoods = query(collection(database, 'shareFoods'), limit(itemPerPage));
   const storage = getStorage();
   const shareFoodsSnapshot = await getDocs(shareFoods);
 
