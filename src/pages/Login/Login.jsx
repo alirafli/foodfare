@@ -10,6 +10,7 @@ const Login = () => {
   return (
     <Grid container>
       <Grid
+        item
         lg={5}
         sm={5}
         xs={12}
@@ -24,10 +25,10 @@ const Login = () => {
             <FieldInput placeHolder={"Password"} password />
             <Button content="Login" />
             <Grid container alignItems="center" justifyContent="center">
-              <Grid lg={3} sm={3} xs={3}>
+              <Grid item lg={3} sm={3} xs={3}>
                 <hr className={classes.hrStyle} />
               </Grid>
-              <Grid lg={4} sm={4} xs={4}>
+              <Grid item lg={4} sm={4} xs={4}>
                 <Typography
                   variant="h2"
                   sx={{ color: "#fff", m: 1 }}
@@ -36,7 +37,7 @@ const Login = () => {
                   Or
                 </Typography>
               </Grid>
-              <Grid lg={3} sm={3} xs={3}>
+              <Grid item lg={3} sm={3} xs={3}>
                 <hr className={classes.hrStyle} />
               </Grid>
             </Grid>
@@ -46,6 +47,7 @@ const Login = () => {
         </Box>
       </Grid>
       <Grid
+        item
         lg={7}
         sm={7}
         sx={{
