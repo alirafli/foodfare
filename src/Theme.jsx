@@ -1,4 +1,6 @@
 import { createTheme } from "@mui/material";
+import { red } from '@mui/material/colors';
+
 
 export const THEME = createTheme({
   typography: {
@@ -24,6 +26,9 @@ export const THEME = createTheme({
     },
     complementary: {
       main: "#f1f8e9",
+    },
+    error: {
+      main: red[900],
     },
   },
 });

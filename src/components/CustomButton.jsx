@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
-const CustomButton = ({ content, secondary, variant = "contained" }) => {
+const CustomButton = ({ content, secondary, variant = "contained", ...otherProps }) => {
   const color = secondary ?  "#fff" : "primary.main";
   return (
     <Button
@@ -16,6 +16,7 @@ const CustomButton = ({ content, secondary, variant = "contained" }) => {
         textTransform: "none",
         my: 1,
       }}
+      {...otherProps}
     >
       {content}
     </Button>

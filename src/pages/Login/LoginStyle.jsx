@@ -1,5 +1,4 @@
 import { makeStyles } from "@mui/styles";
-import * as React from "react";
 
 export const useStyles = makeStyles((theme) => ({
   jumbotron: {
