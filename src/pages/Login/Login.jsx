@@ -2,7 +2,7 @@ import { Typography, Stack, Box, Grid } from "@mui/material";
 import React from "react";
 import FieldInput from "../../components/FieldInput";
 import Button from "../../components/CustomButton";
-import Jumbotron from "../../assets/jumbotron.png";
+import Jumbotron from "../../assets/loginPage.svg";
 import { useStyles } from "./LoginStyle";
 
 const Login = () => {
