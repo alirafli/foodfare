@@ -1,12 +1,38 @@
-import { Typography, Stack, Box, Grid } from "@mui/material";
 import React from "react";
+import { Typography, Stack, Box, Grid } from "@mui/material";
+import GoogleIcon from "@mui/icons-material/Google";
+import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import * as yup from "yup";
 import FieldInput from "../../components/FieldInput";
 import Button from "../../components/CustomButton";
 import Jumbotron from "../../assets/loginPage.svg";
 import { useStyles } from "./LoginStyle";
 
+const validationSchema = yup.object({
+  email: yup
+    .string("Enter your email")
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: yup
+    .string("Enter your password")
+    .min(8, "Password should be of minimum 8 characters length")
+    .required("Password is required"),
+});
+
 const Login = () => {
   const classes = useStyles();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     <Grid container>
       <Grid
@@ -21,9 +47,29 @@ const Login = () => {
             Login
           </Typography>
           <Stack>
-            <FieldInput placeHolder={"E-Mail"} />
-            <FieldInput placeHolder={"Password"} password />
-            <Button content="Login" />
+            <form onSubmit={formik.handleSubmit}>
+              <FieldInput
+                id="email"
+                placeHolder="Email"
+                fullWidth
+                onChange={formik.handleChange}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
+              />
+              <FieldInput
+                id="password"
+                placeHolder="Password"
+                fullWidth
+                password
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                helperText={formik.touched.password && formik.errors.password}
+              />
+              <Button content="Login" type="submit" fullWidth />
+            </form>
             <Grid container alignItems="center" justifyContent="center">
               <Grid item lg={3} sm={3} xs={3}>
                 <hr className={classes.hrStyle} />
@@ -41,8 +87,20 @@ const Login = () => {
                 <hr className={classes.hrStyle} />
               </Grid>
             </Grid>
-            <Button content="Sign Up" secondary variant="outlined" />
-            <Button content="Login with Google" secondary variant="outlined" />
+            <Link to="/register" style={{ textDecoration: "none" }}>
+              <Button
+                content="Sign Up"
+                secondary
+                variant="outlined"
+                fullWidth
+              />
+            </Link>
+            <Button
+              content="Login with Google"
+              secondary
+              variant="outlined"
+              endIcon={<GoogleIcon />}
+            />
           </Stack>
         </Box>
       </Grid>
