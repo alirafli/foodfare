@@ -52,7 +52,7 @@ const Register = () => {
           bgcolor: "primary.main",
           px: { sm: 5, xs: 5, lg: 10 },
           py: { xs: 5, lg: 10, sm: 5 },
-          height: { xs: "100vh" },
+          minHeight: { xs: "100vh" },
         }}
       >
         <Box>
@@ -144,7 +144,7 @@ const Register = () => {
         sm={7}
         sx={{
           width: "60%",
-          height: "100vh",
+          minHeight: "100vh",
           display: { sm: "flex", xs: "none", lg: "flex" },
           justifyContent: "center",
           alignItems: "center",
