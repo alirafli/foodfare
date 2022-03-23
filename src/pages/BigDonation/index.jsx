@@ -13,10 +13,10 @@ const BigDonation = () => {
     >
       <Grid container spacing={3} alignItems="center" justifyContent="center">
         <Grid item md={7} order={{ xs: 2, md: 1 }}>
-          <Typography variant="h1" color="initial">
-            In this March,
+          <Typography variant="h1" color="text.primary">
+            In this <Box className={classes.boldText}>March</Box>,
           </Typography>
-          <Typography variant="h1" color="initial">
+          <Typography variant="h1" color="text.primary">
             Let's donate food to the <Box className={classes.boldText}>orphanage</Box>!
           </Typography>
         </Grid>

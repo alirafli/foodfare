@@ -2,6 +2,7 @@ import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme) => ({
   boldText: {
-		display: "inline",
+    display: 'inline',
+    color: theme.palette.text.secondary,
   },
 }));
