@@ -6,7 +6,7 @@ import donatePhone from '../../assets/bigDonation/donate-phone.svg';
 const TitleSection = ({ classes }) => {
   return (
     <Grid container spacing={3} alignItems="center" justifyContent="center">
-      <Grid item md={7} order={{ xs: 2, md: 1 }}>
+      <Grid item md={7} order={{ xs: 2, md: 1 }} p={3}>
         <Typography variant="h1" color="text.primary">
           In this <Box className={classes.boldText}>March</Box>,
         </Typography>
@@ -20,6 +20,7 @@ const TitleSection = ({ classes }) => {
         sx={{ display: 'flex', justifyContent: 'center' }}
         md={5}
         order={{ xs: 1, md: 2 }}
+		p={3}
       >
         <img src={donatePhone} alt="" srcset="" />
       </Grid>

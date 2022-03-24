@@ -7,17 +7,24 @@ import TitleSection from './TitleSection';
 const BigDonation = () => {
   const classes = useStyles();
   return (
-    <Stack
+    <Box
       sx={{
         padding: '20px',
-        paddingLeft: 12,
-        paddingRight: 12,
+        px:12,
       }}
-      spacing={10}
     >
-      <TitleSection classes={classes}/>
-      <DescriptionSection classes={classes} />
-    </Stack>
+      <Stack
+      spacing={4}
+      >
+        <Box>
+          <TitleSection classes={classes}/>
+        </Box>
+        {/* <TitleSection classes={classes}/> */}
+        <Box>
+          <DescriptionSection classes={classes} />
+        </Box>
+      </Stack>
+    </Box>
   );
 };
 
