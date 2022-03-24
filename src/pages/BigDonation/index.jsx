@@ -10,8 +10,8 @@ const BigDonation = () => {
     <Stack
       sx={{
         padding: '20px',
-        paddingLeft: '50px',
-        paddingRight: '50px',
+        paddingLeft: 12,
+        paddingRight: 12,
       }}
       spacing={10}
     >

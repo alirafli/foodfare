@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import donatePhone from '../../assets/bigDonation/donate-phone.svg';
 
-const TitleSection = ({classes}) => {
+const TitleSection = ({ classes }) => {
   return (
     <Grid container spacing={3} alignItems="center" justifyContent="center">
       <Grid item md={7} order={{ xs: 2, md: 1 }}>
@@ -15,7 +15,12 @@ const TitleSection = ({classes}) => {
           <Box className={classes.boldText}>orphanage</Box>!
         </Typography>
       </Grid>
-      <Grid item md={5} order={{ xs: 1, md: 2 }}>
+      <Grid
+        item
+        sx={{ display: 'flex', justifyContent: 'center' }}
+        md={5}
+        order={{ xs: 1, md: 2 }}
+      >
         <img src={donatePhone} alt="" srcset="" />
       </Grid>
     </Grid>
