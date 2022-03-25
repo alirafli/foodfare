@@ -17,6 +17,7 @@ const CustomButton = ({ content, secondary, variant = "contained", ...otherProps
         my: 1,
       }}
       {...otherProps}
+        fullWidth
     >
       {content}
     </Button>

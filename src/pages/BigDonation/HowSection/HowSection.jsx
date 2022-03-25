@@ -5,6 +5,7 @@ import formSurvey from '../../../assets/bigDonation/form-survey.svg';
 import deliverFood from '../../../assets/bigDonation/deliver-food.svg';
 import foodTaken from '../../../assets/bigDonation/food-taken.svg';
 import Step from './Step';
+import CustomButton from '../../../components/CustomButton';
 
 const HowSection = ({ classes }) => {
   return (
@@ -44,6 +45,12 @@ const HowSection = ({ classes }) => {
         description="Third, we will deliver your food to the orphanage "
         classes={classes}
       />
+      {/* Change the button */}
+      <Grid item xs={8}>
+        <CustomButton
+          content="Donate Now"
+        />
+      </Grid>
     </Grid>
   );
 };
