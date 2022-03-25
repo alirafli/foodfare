@@ -16,7 +16,6 @@ const EventSection = ({ classes }) => {
       >
         <Typography
           sx={{
-            width: { xs: '100%', sm: '50%' },
             fontWeight: 'bold',
           }}
           variant="h4"

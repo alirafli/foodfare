@@ -9,4 +9,7 @@ export const useStyles = makeStyles((theme) => ({
   image: {
     width: '100%',
   },
+  step: {
+    height: "200px",
+  },
 }));

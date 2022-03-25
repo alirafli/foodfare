@@ -2,6 +2,7 @@ import { Box, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 import DescriptionSection from './DescriptionSection';
 import EventSection from './EventSection';
+import HowSection from './HowSection/HowSection';
 import { useStyles } from './style';
 import TitleSection from './TitleSection';
 
@@ -15,7 +16,7 @@ const BigDonation = () => {
       }}
     >
       <Stack
-      spacing={4}
+      spacing={8}
       >
         <Box>
           <TitleSection classes={classes}/>
@@ -25,6 +26,9 @@ const BigDonation = () => {
         </Box>
         <Box>
           <EventSection classes={classes} />
+        </Box>
+        <Box>
+          <HowSection classes={classes} />
         </Box>
       </Stack>
     </Box>
