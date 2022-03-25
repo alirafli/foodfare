@@ -30,5 +30,9 @@ export const THEME = createTheme({
     error: {
       main: red[900],
     },
+    text:{
+      primary: "#595959",
+      secondary: "#90A955",
+    }
   },
 });
