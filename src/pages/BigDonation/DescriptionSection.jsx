@@ -3,7 +3,7 @@ import { Box, width } from '@mui/system';
 import React from 'react';
 import heartGroup from '../../assets/bigDonation/heart-group.svg';
 
-const DescriptionSection = () => {
+const DescriptionSection = ({classes}) => {
   return (
     <Grid container spacing={3} alignItems="center" justifyContent="center">
       <Grid
@@ -35,7 +35,7 @@ const DescriptionSection = () => {
         }}
         p={3}
       >
-        <img src={heartGroup} alt="" srcset="" />
+        <img className={classes.image} src={heartGroup} alt="" srcset="" />
       </Grid>
       <Grid
         item

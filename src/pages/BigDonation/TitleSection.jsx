@@ -22,7 +22,7 @@ const TitleSection = ({ classes }) => {
         order={{ xs: 1, md: 2 }}
 		p={3}
       >
-        <img src={donatePhone} alt="" srcset="" />
+        <img className={classes.image} src={donatePhone} alt="" srcset="" />
       </Grid>
     </Grid>
   );

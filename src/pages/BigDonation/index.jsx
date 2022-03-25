@@ -1,6 +1,7 @@
 import { Box, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
 import DescriptionSection from './DescriptionSection';
+import EventSection from './EventSection';
 import { useStyles } from './style';
 import TitleSection from './TitleSection';
 
@@ -10,7 +11,7 @@ const BigDonation = () => {
     <Box
       sx={{
         padding: '20px',
-        px:12,
+        px:{sm: 12, xs: 6},
       }}
     >
       <Stack
@@ -19,9 +20,11 @@ const BigDonation = () => {
         <Box>
           <TitleSection classes={classes}/>
         </Box>
-        {/* <TitleSection classes={classes}/> */}
         <Box>
           <DescriptionSection classes={classes} />
+        </Box>
+        <Box>
+          <EventSection classes={classes} />
         </Box>
       </Stack>
     </Box>
