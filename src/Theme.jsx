@@ -1,6 +1,5 @@
 import { createTheme } from "@mui/material";
-import { red } from '@mui/material/colors';
-
+import { red } from "@mui/material/colors";
 
 export const THEME = createTheme({
   typography: {
@@ -14,6 +13,14 @@ export const THEME = createTheme({
       fontSize: 24,
       fontWeight: "bold",
       color: "#595959",
+    },
+    h3: {
+      fontSize: 18,
+      color: "#595959",
+    },
+    h4: {
+      fontSize: 12,
+      color: "#90A955",
     },
   },
   palette: {
@@ -30,9 +37,28 @@ export const THEME = createTheme({
     error: {
       main: red[900],
     },
-    text:{
+    text: {
       primary: "#595959",
       secondary: "#90A955",
-    }
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      ll: 1441,
+    },
   },
 });
+
+THEME.typography.title = {
+  fontSize: 64,
+  fontWeight: "bold",
+  color: "#595959",
+  [THEME.breakpoints.down("md")]: {
+    fontSize: 44,
+  },
+};
