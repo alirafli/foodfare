@@ -5,13 +5,13 @@ import formSurvey from '../../assets/bigDonation/form-survey.svg';
 
 const BigDonationForm = () => {
   return (
-    <Stack spacing={4} p={5}>
+    <Stack spacing={2} p={5}>
       <Typography variant="h1" color="text.primary">
         Let's fill the form!
       </Typography>
       <Grid component="form" container alignItems="center">
         <Grid sm={6}>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} justifyContent={{xs:"center", sm:"flex-start"}}>
             <Grid item sm={3}>
               <TextField
                 id="outlined-basic"
@@ -56,14 +56,21 @@ const BigDonationForm = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid sx={{ display: 'flex', justifyContent: 'flex-end' }} sm={6}>
+        <Grid
+          sx={{
+            display: 'flex',
+            justifyContent: { xs: 'center', sm: 'flex-end' },
+          }}
+          xs={12}
+          sm={6}
+        >
           <img style={{ width: '70%' }} src={formSurvey} alt="" />
         </Grid>
-		<Grid item sm={12}>
-		<Button variant="contained" color="primary" fullWidth>
-			Submit
-		</Button>
-          </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" color="primary" fullWidth>
+            Submit
+          </Button>
+        </Grid>
       </Grid>
     </Stack>
   );
