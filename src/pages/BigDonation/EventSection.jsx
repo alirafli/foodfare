@@ -18,7 +18,7 @@ const EventSection = ({ classes }) => {
           sx={{
             fontWeight: 'bold',
           }}
-          variant="h4"
+          variant="h2"
           textAlign="center"
           color="text.primary"
         >
@@ -39,12 +39,12 @@ const EventSection = ({ classes }) => {
         <Typography
           mb={1}
           sx={{ fontWeight: 500, textDecoration: 'underline' }}
-          variant="h5"
+          variant="h6"
           color="text.secondary"
         >
           Our Family Orphanage
         </Typography>
-        <Typography variant="h5" color="text.primary">
+        <Typography variant="h6" color="text.primary">
           Our Family Orphanage is a big orphanage and our partner in this month
           for Big Donation Program. This oprhanage accommodates{' '}
           <Box className={classes.boldText}>45 children</Box>. The orphanage

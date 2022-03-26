@@ -20,7 +20,7 @@ const HowSection = ({ classes }) => {
           sx={{
             fontWeight: 'bold',
           }}
-          variant="h4"
+          variant="h2"
           textAlign="center"
           color="text.primary"
         >
@@ -49,6 +49,7 @@ const HowSection = ({ classes }) => {
       <Grid item xs={8}>
         <CustomButton
           content="Donate Now"
+          fullWidth
         />
       </Grid>
     </Grid>
