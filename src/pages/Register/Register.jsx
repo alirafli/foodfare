@@ -8,6 +8,7 @@ import FieldInput from "../../components/FieldInput";
 import Button from "../../components/CustomButton";
 import Jumbotron from "../../assets/registerPage.svg";
 import { useStyles } from "./RegisterStyle";
+import { register } from "../../firebase/auth";
 
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Your name is required"),
@@ -37,8 +38,11 @@ const Register = () => {
       changepassword: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      const {email, password} = values;
+      const response = await register(email, password).catch((err) => {
+        console.log(err.message);
+      });
     },
   });
   return (
