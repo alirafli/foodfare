@@ -1,32 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Typography, Stack, Box, Grid } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import FieldInput from "../../components/FieldInput";
-import Button from "../../components/CustomButton";
-import Jumbotron from "../../assets/registerPage.svg";
-import { useStyles } from "./RegisterStyle";
-import { loginWithGoogle, register } from "../../firebase/auth";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Typography, Stack, Box, Grid } from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import FieldInput from '../../components/FieldInput';
+import Button from '../../components/CustomButton';
+import Jumbotron from '../../assets/registerPage.svg';
+import { useStyles } from './RegisterStyle';
+import { loginWithGoogle, register } from '../../firebase/auth';
 import { useSnackbar } from 'notistack';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
 
 const validationSchema = yup.object({
-  name: yup.string("Enter your name").required("Your name is required"),
+  name: yup.string('Enter your name').required('Your name is required'),
   email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),
   password: yup
-    .string("Enter your password")
-    .min(8, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
-  changepassword: yup.string().when("password", {
+    .string('Enter your password')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
+  changepassword: yup.string().when('password', {
     is: (val) => (val && val.length > 0 ? true : false),
     then: yup
       .string()
-      .oneOf([yup.ref("password")], "Both password need to be the same"),
+      .oneOf([yup.ref('password')], 'Both password need to be the same'),
   }),
 });
 
@@ -47,20 +48,20 @@ const Register = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      password: "",
-      changepassword: "",
+      name: '',
+      email: '',
+      password: '',
+      changepassword: '',
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const {email, password} = values;
-      const response = await register(email, password).catch((err) => {
+      const { name, email, password } = values;
+      const response = await register(name,email, password).catch((err) => {
         console.log(err.message);
-        enqueueSnackbar(err.message, {variant: "error"});
+        enqueueSnackbar(err.message, { variant: 'error' });
       });
-      if(response){
-        enqueueSnackbar("register successfull", {variant: "success"});
+      if (response) {
+        enqueueSnackbar('register successfull', { variant: 'success' });
         navigate(`/`);
       }
     },
@@ -73,14 +74,14 @@ const Register = () => {
         sm={5}
         xs={12}
         sx={{
-          bgcolor: "primary.main",
+          bgcolor: 'primary.main',
           px: { sm: 5, xs: 5, lg: 10 },
           py: { xs: 5, lg: 10, sm: 5 },
-          minHeight: { xs: "100vh" },
+          minHeight: { xs: '100vh' },
         }}
       >
         <Box>
-          <Typography variant="h1" sx={{ color: "#fff", mb: 1 }}>
+          <Typography variant="h1" sx={{ color: '#fff', mb: 1 }}>
             Register
           </Typography>
           <Stack>
@@ -140,7 +141,7 @@ const Register = () => {
               <Grid item lg={4} sm={4} xs={4}>
                 <Typography
                   variant="h2"
-                  sx={{ color: "#fff", m: 1 }}
+                  sx={{ color: '#fff', m: 1 }}
                   align="center"
                 >
                   Or
@@ -150,7 +151,7 @@ const Register = () => {
                 <hr className={classes.hrStyle} />
               </Grid>
             </Grid>
-            <Link to="/login" style={{ textDecoration: "none" }}>
+            <Link to="/login" style={{ textDecoration: 'none' }}>
               <Button content="Log In" secondary variant="outlined" fullWidth />
             </Link>
             <Button
@@ -168,11 +169,11 @@ const Register = () => {
         lg={7}
         sm={7}
         sx={{
-          width: "60%",
-          minHeight: "100vh",
-          display: { sm: "flex", xs: "none", lg: "flex" },
-          justifyContent: "center",
-          alignItems: "center",
+          width: '60%',
+          minHeight: '100vh',
+          display: { sm: 'flex', xs: 'none', lg: 'flex' },
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <img className={classes.jumbotron} src={Jumbotron} alt="Jumbotron" />

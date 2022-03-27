@@ -4,11 +4,18 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import { auth } from '../init';
 
-export const register = (email, password) =>
-  createUserWithEmailAndPassword(auth, email, password);
+export const register = async (name,email, password) => {
+  
+  const auth = getAuth();
+  updateProfile(auth.currentUser, {
+    displayName: name
+  });
+  return createUserWithEmailAndPassword(auth, email, password);
+};
 
 export const login = (email, password) =>
   signInWithEmailAndPassword(auth, email, password);
