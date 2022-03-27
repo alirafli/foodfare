@@ -13,7 +13,7 @@ const Step = ({ image, title, description, classes }) => {
       item
     >
       <img className={classes.step} src={image} alt="" srcset="" />
-      <Typography textAlign="center" variant="h2" color="text.primary">
+      <Typography sx={{fontWeight: "bold"}} textAlign="center" variant="h6" color="text.primary">
         {title}
       </Typography>
       <Typography textAlign="center" variant="h6" color="text.primary">
