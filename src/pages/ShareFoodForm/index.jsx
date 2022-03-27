@@ -64,16 +64,17 @@ const ShareFoodForm = () => {
             spacing={2}
             justifyContent={{ xs: 'center', sm: 'flex-start' }}
           >
-            <Grid item sm={3}>
+            <Grid item sm={12}>
               <TextField
+                sx={{borderRadius: 20}}
                 id="name"
-                label="Name"
+                label="Title"
                 variant="outlined"
                 onChange={formik.handleChange}
                 fullWidth
               />
             </Grid>
-            <Grid item sm={6}>
+            <Grid item sm={12}>
               <TextField
                 id="address"
                 label="Address"
