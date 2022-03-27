@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Box, Grid } from "@mui/material";
 import Dummy from "../../assets/dummyFood.png";
 import { useStyles } from "./Style";
@@ -8,9 +8,11 @@ import { Link } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 import ModalItem from "../../components/Modals/Modals";
 import Button from "../../components/CustomButton";
+import { getSharefoods } from "../../firebase/api/shareFood";
 
 const ShareFood = () => {
   const [open, setOpen] = useState(false);
+  const [foodList, setFoodList] = useState([]);
   const [content, setContent] = useState(1);
   const handleOpen = (data) => {
     setOpen(true);
@@ -19,7 +21,12 @@ const ShareFood = () => {
   const handleClose = () => setOpen(false);
   const classes = useStyles();
   const DummyData = data;
-  // console.log(content);
+
+  useEffect(async () => {
+    const data = await getSharefoods();
+    // console.log(data)
+    setFoodList(data);
+  }, []);
 
   return (
     <Grid
@@ -72,7 +79,9 @@ const ShareFood = () => {
           left: 0,
         }}
       >
-        <Button content="+" ternary />
+        <Link to="/share-food/form" style={{ textDecoration: "none" }}>
+          <Button content="+" ternary />
+        </Link>
       </Box>
     </Grid>
   );

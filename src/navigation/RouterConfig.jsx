@@ -25,6 +25,7 @@ import Article from "../pages/Article/Article";
 import Navbar from "../components/Navbar/Navbar";
 import Modals from "../components/Modals/Modals";
 import ShareFood from "../pages/ShareFood/ShareFood";
+import ShareFoodForm from "../pages/ShareFoodForm";
 
 export const RouterConfig = () => {
   return (
@@ -88,15 +89,27 @@ export const RouterConfig = () => {
           </div>
         }
       />
-      <Route
-        path={SHAREFOOD}
-        element={
-          <div>
-            <Navbar />
-            <ShareFood />
-          </div>
-        }
-      />
+      <Route path={SHAREFOOD}>
+        <Route
+          index
+          element={
+            <div>
+              <Navbar />
+              <ShareFood />
+            </div>
+          }
+        />
+        <Route
+          path={FORM}
+          element={
+            <div>
+              <Navbar />
+              <ShareFoodForm />
+            </div>
+          }
+        />
+      </Route>
+
       <Route path={MODAL} element={<Modals />} />
     </Routes>
   );

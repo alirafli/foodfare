@@ -4,6 +4,7 @@ import Button from "../../components/CustomButton";
 import { Typography, Box, Grid } from "@mui/material";
 
 import Dummy from "../../assets/dummyFood.png";
+import { Link } from "react-router-dom";
 
 const SearchPage = ({ classes }) => {
   return (
@@ -31,11 +32,13 @@ const SearchPage = ({ classes }) => {
       </Grid>
       <Grid item lg={7}>
         <Typography variant="title">
-          Discover more about 
+          Discover more about
           <Box className={classes.boldText}> food waste</Box>
         </Typography>
         <br />
-        <Button content="Discovered" size="large" ternary />
+        <Link to="/education" style={{ textDecoration: "none" }}>
+          <Button content="Discovered" size="large" ternary />
+        </Link>
       </Grid>
     </Grid>
   );

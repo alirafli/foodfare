@@ -1,11 +1,12 @@
-import React from 'react';
-import { Stack, Typography, Grid } from '@mui/material';
-import { Box, width } from '@mui/system';
-import formSurvey from '../../../assets/bigDonation/form-survey.svg';
-import deliverFood from '../../../assets/bigDonation/deliver-food.svg';
-import foodTaken from '../../../assets/bigDonation/food-taken.svg';
-import Step from './Step';
-import CustomButton from '../../../components/CustomButton';
+import React from "react";
+import { Stack, Typography, Grid } from "@mui/material";
+import { Box, width } from "@mui/system";
+import formSurvey from "../../../assets/bigDonation/form-survey.svg";
+import deliverFood from "../../../assets/bigDonation/deliver-food.svg";
+import foodTaken from "../../../assets/bigDonation/food-taken.svg";
+import Step from "./Step";
+import CustomButton from "../../../components/CustomButton";
+import { Link } from "react-router-dom";
 
 const HowSection = ({ classes }) => {
   return (
@@ -13,12 +14,12 @@ const HowSection = ({ classes }) => {
       <Grid
         item
         sm={12}
-        sx={{ display: 'flex', justifyContent: 'center' }}
+        sx={{ display: "flex", justifyContent: "center" }}
         p={3}
       >
         <Typography
           sx={{
-            fontWeight: 'bold',
+            fontWeight: "bold",
           }}
           variant="h2"
           textAlign="center"
@@ -47,10 +48,9 @@ const HowSection = ({ classes }) => {
       />
       {/* Change the button */}
       <Grid item xs={8}>
-        <CustomButton
-          content="Donate Now"
-          fullWidth
-        />
+        <Link to="/donation/form" style={{ textDecoration: "none" }}>
+          <CustomButton content="Donate Now" fullWidth />
+        </Link>
       </Grid>
     </Grid>
   );

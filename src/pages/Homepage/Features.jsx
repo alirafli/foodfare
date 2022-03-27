@@ -61,6 +61,8 @@ const Features = ({ classes }) => {
             img={SHARE}
             content="Share your food with others around you to reduce food waste"
             btnContent="Share"
+            linkTo="/share-food"
+
           />
           <Card
             useBtn
@@ -71,6 +73,8 @@ const Features = ({ classes }) => {
             content="Participate on a larger scale by making a donation to help those
                 in need"
             btnContent="Donate"
+            linkTo="/donation"
+
           />
         </Grid>
       </Grid>

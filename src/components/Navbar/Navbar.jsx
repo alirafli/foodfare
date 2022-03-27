@@ -11,7 +11,12 @@ import { auth } from "../../firebase/init";
 import { logout } from "../../firebase/auth";
 import Menu from "@mui/material/Menu";
 
-const pagesUser = ["Share", "Donate", "Article", "About Us"];
+const pagesUser = [
+  { root: "Share", link: "/share-food" },
+  { root: "donate", link: "/donation" },
+  { root: "Article", link: "/education" },
+  { root: "About Us", link: "/" },
+];
 
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -27,7 +32,9 @@ const Navbar = () => {
       <AppBar position="fixed" sx={{ backgroundColor: "#fff" }}>
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
-            <img src={LOGO} alt="" />
+            <Link to="/">
+              <img src={LOGO} alt="" />
+            </Link>
           </Box>
           {user ? (
             <Box
@@ -39,9 +46,11 @@ const Navbar = () => {
             >
               {pagesUser.map((page) => (
                 <Box key={page}>
-                  <Typography variant="h3" color="text.secondary" px={2}>
-                    {page}
-                  </Typography>
+                  <Link to={page.link} style={{ textDecoration: "none" }}>
+                    <Typography variant="h3" color="text.secondary" px={2}>
+                      {page.root}
+                    </Typography>
+                  </Link>
                 </Box>
               ))}
               <Button onClick={handler} content="Log Out" />
