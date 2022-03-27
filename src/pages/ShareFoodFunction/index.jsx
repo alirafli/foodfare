@@ -6,8 +6,6 @@ const ShareFood = () => {
   const [food, setFood] = useState([]);
   useEffect(async () => {
     const response = await getSharefoods();
-    const photo= await getSharefoodsPhotos(response);
-    console.log(response);
     setFood(response);
   }, []);
 
