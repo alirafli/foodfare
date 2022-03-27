@@ -11,6 +11,7 @@ import {
   BIGDONATION,
   BIGDONATIONFORM,
   MODAL,
+  SHAREFOOD,
 } from "./Path";
 
 //pages
@@ -23,6 +24,7 @@ import Education from "../pages/EducationPage/EducationPage";
 import Article from "../pages/Article/Article";
 import Navbar from "../components/Navbar/Navbar";
 import Modals from "../components/Modals/Modals";
+import ShareFood from "../pages/ShareFood/ShareFood";
 
 export const RouterConfig = () => {
   return (
@@ -83,6 +85,15 @@ export const RouterConfig = () => {
           <div>
             <Navbar />
             <Education />
+          </div>
+        }
+      />
+      <Route
+        path={SHAREFOOD}
+        element={
+          <div>
+            <Navbar />
+            <ShareFood />
           </div>
         }
       />
