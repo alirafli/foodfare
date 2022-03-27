@@ -17,7 +17,6 @@ import { auth } from '../../firebase/init';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 
-
 const validationSchema = yup.object({
   address: yup.string('Enter your address').required('address is required'),
   phone: yup
@@ -25,7 +24,7 @@ const validationSchema = yup.object({
     .required('phone number is required'),
   amount: yup
     .number('Enter your description')
-    .min(1, "donation minimum is 1")
+    .min(1, 'donation minimum is 1')
     .required('description is required'),
   description: yup
     .string('Enter your description')
@@ -34,7 +33,7 @@ const validationSchema = yup.object({
 
 const ShareFoodForm = () => {
   const [user, loading, error] = useAuthState(auth);
-  
+
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
@@ -47,9 +46,16 @@ const ShareFoodForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const {address, phone, amount, description} = values;
-      const response = await createBigDonation(description, address, phone, "test", 'name', '1243123')
-      console.log(response); 
+      const { address, phone, amount, description } = values;
+      const response = await createBigDonation(
+        description,
+        address,
+        phone,
+        'test',
+        'name',
+        '1243123'
+      );
+      console.log(response);
     },
   });
 
@@ -64,15 +70,15 @@ const ShareFoodForm = () => {
         alignItems="center"
         onSubmit={formik.handleSubmit}
       >
-        <Grid item sm={6}>
+        <Grid item sm={12}>
           <Grid
             container
             spacing={2}
             justifyContent={{ xs: 'center', sm: 'flex-start' }}
           >
-            <Grid item sm={12}>
+            <Grid item sm={6}>
               <TextField
-                sx={{borderRadius: 20}}
+                sx={{ borderRadius: 20 }}
                 id="name"
                 label="Title"
                 variant="outlined"
@@ -80,10 +86,10 @@ const ShareFoodForm = () => {
                 fullWidth
               />
             </Grid>
-            <Grid item sm={12}>
+            <Grid item sm={6}>
               <TextField
-                id="address"
-                label="Address"
+                id="location"
+                label="Location"
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.address}
@@ -92,10 +98,22 @@ const ShareFoodForm = () => {
                 fullWidth
               />
             </Grid>
-            <Grid item sm={4}>
+            <Grid item sm={6}>
               <TextField
-                id="phone"
-                label="Phone Number"
+                id="bought"
+                label="Bought Date"
+                variant="outlined"
+                onChange={formik.handleChange}
+                value={formik.values.address}
+                error={formik.touched.address && Boolean(formik.errors.address)}
+                helperText={formik.touched.address && formik.errors.address}
+                fullWidth
+              />
+            </Grid>
+            <Grid item sm={6}>
+              <TextField
+                id="expired"
+                label="Expired Date"
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.phone}
@@ -104,15 +122,11 @@ const ShareFoodForm = () => {
                 fullWidth
               />
             </Grid>
-            <Grid item sm={3}>
+            <Grid item sm={6}>
               <TextField
-                id="amount"
-                label="Amount(kg)"
+                id="condition"
+                label="Condition"
                 variant="outlined"
-                type="number"
-                inputProps={{
-                  inputMode: 'numeric',
-                }}
                 onChange={formik.handleChange}
                 value={formik.values.amount}
                 error={formik.touched.amount && Boolean(formik.errors.amount)}
@@ -120,12 +134,10 @@ const ShareFoodForm = () => {
                 fullWidth
               />
             </Grid>
-            <Grid item sm={12}>
+            <Grid item sm={6}>
               <TextField
-                id="description"
-                multiline
-                minRows={4}
-                label="Description"
+                id="pickup"
+                label="Pick Up Time"
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.description}
@@ -139,20 +151,37 @@ const ShareFoodForm = () => {
                 fullWidth
               />
             </Grid>
+            <Grid item sm={6}>
+              <TextField
+                id="condition"
+                multiline
+                label="Caption"
+                minRows={4}
+                variant="outlined"
+                onChange={formik.handleChange}
+                value={formik.values.amount}
+                error={formik.touched.amount && Boolean(formik.errors.amount)}
+                helperText={formik.touched.amount && formik.errors.amount}
+                fullWidth
+              />
+            </Grid>
+            <Grid item sm={6}>
+              <TextField
+                id="condition"
+                multiline
+                label="Caption"
+                minRows={4}
+                variant="outlined"
+                onChange={formik.handleChange}
+                value={formik.values.amount}
+                error={formik.touched.amount && Boolean(formik.errors.amount)}
+                helperText={formik.touched.amount && formik.errors.amount}
+                fullWidth
+              />
+            </Grid>
           </Grid>
         </Grid>
-        <Grid
-          item
-          sx={{
-            display: 'flex',
-            justifyContent: { xs: 'center', sm: 'flex-end' },
-          }}
-          xs={12}
-          sm={6}
-        >
-          <img style={{ width: '70%' }} src={formSurvey} alt="" />
-        </Grid>
-        <Grid item xs={12}>
+        <Grid mt={5} item xs={12}>
           <Button variant="contained" color="primary" fullWidth type="submit">
             Submit
           </Button>

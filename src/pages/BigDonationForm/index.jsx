@@ -49,7 +49,7 @@ const BigDonationForm = () => {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       const {name,address, phone, amount, description} = values;
-      const response = await createBigDonation(description, address, phone, "test", name, user.uid)
+      const response = await createBigDonation(description, address, phone, name, user.uid)
       if(response){
         enqueueSnackbar('Submited successfull', { variant: 'success' });
         navigate(`/`);
