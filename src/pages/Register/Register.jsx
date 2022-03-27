@@ -10,6 +10,7 @@ import Jumbotron from "../../assets/registerPage.svg";
 import { useStyles } from "./RegisterStyle";
 import { register } from "../../firebase/auth";
 import { useSnackbar } from 'notistack';
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Your name is required"),
@@ -32,6 +33,7 @@ const validationSchema = yup.object({
 const Register = () => {
   const classes = useStyles();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -48,6 +50,7 @@ const Register = () => {
       });
       if(response){
         enqueueSnackbar("register successfull", {variant: "success"});
+        navigate(`/`);
       }
     },
   });
