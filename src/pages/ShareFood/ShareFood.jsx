@@ -57,7 +57,7 @@ const ShareFood = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <ModalItem title={e.id} />
+            <ModalItem title={e.content} username={e.name} />
           </Modal>
         </Box>
       ))}
