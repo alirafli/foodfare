@@ -8,6 +8,9 @@ import FieldInput from "../../components/FieldInput";
 import Button from "../../components/CustomButton";
 import Jumbotron from "../../assets/registerPage.svg";
 import { useStyles } from "./RegisterStyle";
+import { loginWithGoogle, register } from "../../firebase/auth";
+import { useSnackbar } from 'notistack';
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Your name is required"),
@@ -29,6 +32,19 @@ const validationSchema = yup.object({
 
 const Register = () => {
   const classes = useStyles();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const navigate = useNavigate();
+
+  const loginGoogle = async () => {
+    const response = await loginWithGoogle().catch((err) => {
+      enqueueSnackbar(err.message, { variant: 'error' });
+    });
+    if (response) {
+      enqueueSnackbar('login successfull', { variant: 'success' });
+      navigate(`/`);
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -37,8 +53,16 @@ const Register = () => {
       changepassword: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      const {email, password} = values;
+      const response = await register(email, password).catch((err) => {
+        console.log(err.message);
+        enqueueSnackbar(err.message, {variant: "error"});
+      });
+      if(response){
+        enqueueSnackbar("register successfull", {variant: "success"});
+        navigate(`/`);
+      }
     },
   });
   return (
@@ -133,6 +157,7 @@ const Register = () => {
               content="Login with Google"
               secondary
               variant="outlined"
+              onClick={loginGoogle}
               endIcon={<GoogleIcon />}
             />
           </Stack>
