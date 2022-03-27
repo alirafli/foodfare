@@ -9,7 +9,7 @@ import {
   EDUCATION,
   ARTICLE,
   BIGDONATION,
-  BIGDONATIONFORM,
+  FORM,
 } from "./Path";
 
 //pages
@@ -31,7 +31,7 @@ export const RouterConfig = () => {
       <Route path={ARTICLE} element={<Article />} />
       <Route path={BIGDONATION}>
         <Route index element={<BigDonation />} />
-        <Route path={BIGDONATIONFORM} element={<BigDonationForm />} />
+        <Route path={FORM} element={<BigDonationForm />} />
       </Route>
       <Route path={EDUCATION} element={<Education />} />
     </Routes>
