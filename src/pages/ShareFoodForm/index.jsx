@@ -19,28 +19,16 @@ import { useNavigate } from 'react-router-dom';
 import { createShareFood } from '../../firebase/api/shareFood';
 
 const validationSchema = yup.object({
-  title: yup
-  .string('Enter your title')
-  .required('title is required'),
-  location: yup
-    .string('Enter your location')
-    .required('location is required'),
-  bought: yup
-    .string('Enter your bought')
-    .required('bought is required'),
-  expired: yup
-    .string('Enter your expired')
-    .required('expired is required'),
+  title: yup.string('Enter your title').required('title is required'),
+  location: yup.string('Enter your location').required('location is required'),
+  bought: yup.string('Enter your bought').required('bought is required'),
+  expired: yup.string('Enter your expired').required('expired is required'),
   condition: yup
     .string('Enter your condition')
     .required('condition is required'),
-  pickup: yup
-    .string('Enter your pickup')
-    .required('pickup is required'),
-  caption: yup
-    .string('Enter your caption')
-    .required('caption is required'),
-
+  pickup: yup.string('Enter your pickup').required('pickup is required'),
+  caption: yup.string('Enter your caption').required('caption is required'),
+  photo: yup.string('Enter your photo').required('photo is required'),
 });
 
 const ShareFoodForm = () => {
@@ -58,11 +46,36 @@ const ShareFoodForm = () => {
       condition: '',
       pickup: '',
       caption: '',
+      photo: '',
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const {title, location, bought, expired, condition, pickup, caption} = values
-      const response = await createShareFood(title, bought, expired, condition, pickup, caption, location, user);
+      const {
+        title,
+        location,
+        bought,
+        expired,
+        photo,
+        condition,
+        pickup,
+        caption,
+      } = values;
+      const response = await createShareFood(
+        title,
+        bought,
+        expired,
+        condition,
+        pickup,
+        caption,
+        location,
+        photo,
+        user
+      );
+
+      if (response) {
+        enqueueSnackbar('Submited successfull', { variant: 'success' });
+        navigate(`/`);
+      }
     },
   });
 
@@ -102,7 +115,9 @@ const ShareFoodForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.location}
-                error={formik.touched.location && Boolean(formik.errors.location)}
+                error={
+                  formik.touched.location && Boolean(formik.errors.location)
+                }
                 helperText={formik.touched.location && formik.errors.location}
                 fullWidth
               />
@@ -138,7 +153,9 @@ const ShareFoodForm = () => {
                 variant="outlined"
                 onChange={formik.handleChange}
                 value={formik.values.condition}
-                error={formik.touched.condition && Boolean(formik.errors.condition)}
+                error={
+                  formik.touched.condition && Boolean(formik.errors.condition)
+                }
                 helperText={formik.touched.condition && formik.errors.condition}
                 fullWidth
               />
@@ -160,6 +177,20 @@ const ShareFoodForm = () => {
                 id="caption"
                 multiline
                 label="Caption"
+                minRows={4}
+                variant="outlined"
+                onChange={formik.handleChange}
+                value={formik.values.caption}
+                error={formik.touched.caption && Boolean(formik.errors.caption)}
+                helperText={formik.touched.caption && formik.errors.caption}
+                fullWidth
+              />
+            </Grid>
+            <Grid item sm={6}>
+              <TextField
+                id="photo"
+                multiline
+                label="Photo"
                 minRows={4}
                 variant="outlined"
                 onChange={formik.handleChange}

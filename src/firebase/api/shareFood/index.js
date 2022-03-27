@@ -34,8 +34,8 @@ export const createShareFood = async (
   pickUpTime,
   caption,
   location,
-  // photos,
-  user
+  photo,
+  {uid, photoURL, displayName}
 ) => {
   const fileName = uuidv4();
 
@@ -50,10 +50,10 @@ export const createShareFood = async (
     pickUpTime,
     caption,
     location,
-    // photo: fullPath,
+    photo: photo,
     createdAt: serverTimestamp(),
     status: 'open',
-    user: user,
+    user: {uid, photoURL, displayName}
   });
 };
 
