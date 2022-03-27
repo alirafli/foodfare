@@ -8,7 +8,7 @@ import FieldInput from "../../components/FieldInput";
 import Button from "../../components/CustomButton";
 import Jumbotron from "../../assets/registerPage.svg";
 import { useStyles } from "./RegisterStyle";
-import { register } from "../../firebase/auth";
+import { loginWithGoogle, register } from "../../firebase/auth";
 import { useSnackbar } from 'notistack';
 import { useNavigate } from "react-router-dom";
 
@@ -34,6 +34,17 @@ const Register = () => {
   const classes = useStyles();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const navigate = useNavigate();
+
+  const loginGoogle = async () => {
+    const response = await loginWithGoogle().catch((err) => {
+      enqueueSnackbar(err.message, { variant: 'error' });
+    });
+    if (response) {
+      enqueueSnackbar('login successfull', { variant: 'success' });
+      navigate(`/`);
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -146,6 +157,7 @@ const Register = () => {
               content="Login with Google"
               secondary
               variant="outlined"
+              onClick={loginGoogle}
               endIcon={<GoogleIcon />}
             />
           </Stack>
