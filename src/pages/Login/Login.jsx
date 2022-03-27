@@ -1,26 +1,26 @@
-import React from "react";
-import { Typography, Stack, Box, Grid } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
-import { Link } from "react-router-dom";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import FieldInput from "../../components/FieldInput";
-import Button from "../../components/CustomButton";
-import Jumbotron from "../../assets/loginPage.svg";
-import { useStyles } from "./LoginStyle";
+import React from 'react';
+import { Typography, Stack, Box, Grid } from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
+import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import FieldInput from '../../components/FieldInput';
+import Button from '../../components/CustomButton';
+import Jumbotron from '../../assets/loginPage.svg';
+import { useStyles } from './LoginStyle';
 import { useSnackbar } from 'notistack';
-import { login } from "../../firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { login, loginWithGoogle } from '../../firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = yup.object({
   email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),
   password: yup
-    .string("Enter your password")
-    .min(8, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
+    .string('Enter your password')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
 });
 
 const Login = () => {
@@ -29,22 +29,30 @@ const Login = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const {email, password} = values;
+      const { email, password } = values;
       const response = await login(email, password).catch((err) => {
-        console.log(err.message);
-        enqueueSnackbar(err.message, {variant: "error"});
+        enqueueSnackbar(err.message, { variant: 'error' });
       });
-      if(response){
-        enqueueSnackbar("login successfull", {variant: "success"});
+      if (response) {
+        enqueueSnackbar('login successfull', { variant: 'success' });
         navigate(`/`);
       }
     },
   });
+  const loginGoogle = async () => {
+    const response = await loginWithGoogle().catch((err) => {
+      enqueueSnackbar(err.message, { variant: 'error' });
+    });
+    if (response) {
+      enqueueSnackbar('login successfull', { variant: 'success' });
+      navigate(`/`);
+    }
+  };
 
   return (
     <Grid container>
@@ -53,10 +61,10 @@ const Login = () => {
         lg={5}
         sm={5}
         xs={12}
-        sx={{ bgcolor: "primary.main", px: { sm: 5, xs: 5, lg: 10 }, py: 20 }}
+        sx={{ bgcolor: 'primary.main', px: { sm: 5, xs: 5, lg: 10 }, py: 20 }}
       >
         <Box>
-          <Typography variant="h1" sx={{ color: "#fff", mb: 1 }}>
+          <Typography variant="h1" sx={{ color: '#fff', mb: 1 }}>
             Login
           </Typography>
           <Stack>
@@ -90,7 +98,7 @@ const Login = () => {
               <Grid item lg={4} sm={4} xs={4}>
                 <Typography
                   variant="h2"
-                  sx={{ color: "#fff", m: 1 }}
+                  sx={{ color: '#fff', m: 1 }}
                   align="center"
                 >
                   Or
@@ -100,7 +108,7 @@ const Login = () => {
                 <hr className={classes.hrStyle} />
               </Grid>
             </Grid>
-            <Link to="/register" style={{ textDecoration: "none" }}>
+            <Link to="/register" style={{ textDecoration: 'none' }}>
               <Button
                 content="Sign Up"
                 secondary
@@ -113,6 +121,7 @@ const Login = () => {
               secondary
               variant="outlined"
               endIcon={<GoogleIcon />}
+              onClick={loginGoogle}
             />
           </Stack>
         </Box>
@@ -122,11 +131,11 @@ const Login = () => {
         lg={7}
         sm={7}
         sx={{
-          width: "60%",
-          height: "100vh",
-          display: { sm: "flex", xs: "none", lg: "flex" },
-          justifyContent: "center",
-          alignItems: "center",
+          width: '60%',
+          height: '100vh',
+          display: { sm: 'flex', xs: 'none', lg: 'flex' },
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <img className={classes.jumbotron} src={Jumbotron} alt="Jumbotron" />
