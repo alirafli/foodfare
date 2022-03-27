@@ -59,7 +59,7 @@ const Navbar = () => {
             <Box sx={{ display: "flex" }}>
               <Link
                 style={{ margin: "0 2rem 0 2rem", textDecoration: "none" }}
-                to="/signup"
+                to="/register"
               >
                 <Button content="Sign Up" fullWidth />
               </Link>
