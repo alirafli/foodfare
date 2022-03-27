@@ -79,6 +79,21 @@ export const getSharefoods = async (page) => {
     shareFoodsData.push(doc.data());
   });
 
+  // const DataWithPhotoLink = shareFoodsData.map(async (data) => {
+  //   const photo = data.photos;
+  //   const photoLink = await getDownloadURL(
+  //     ref(storage, `${STORAGELINK}/${photo}`)
+  //   ).catch((err) => {});
+  //   return {
+  //     ...data,
+  //     photos: photoLink,
+  //   };
+  // });
+  return shareFoodsData;
+};
+
+export const getSharefoodsPhotos = async (shareFoodsData) => {
+
   const DataWithPhotoLink = shareFoodsData.map(async (data) => {
     const photo = data.photos;
     const photoLink = await getDownloadURL(
@@ -90,4 +105,4 @@ export const getSharefoods = async (page) => {
     };
   });
   return DataWithPhotoLink;
-};
+}

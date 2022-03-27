@@ -21,7 +21,7 @@ import BigDonation from "../pages/BigDonation";
 import BigDonationForm from "../pages/BigDonationForm";
 import Education from "../pages/EducationPage/EducationPage";
 import Article from "../pages/Article/Article";
-import ShareFood from "../pages/ShareFood";
+import ShareFood from "../pages/ShareFoodFunction";
 import ShareFoodForm from "../pages/ShareFoodForm";
 
 export const RouterConfig = () => {
