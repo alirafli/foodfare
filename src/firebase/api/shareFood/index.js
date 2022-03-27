@@ -34,13 +34,13 @@ export const createShareFood = async (
   pickUpTime,
   caption,
   location,
-  photos,
-  { displayName, uid, photoUrl }
+  // photos,
+  user
 ) => {
   const fileName = uuidv4();
 
-  const responsePhoto = await uploadFile(photos, `images/${fileName}`);
-  const fullPath = responsePhoto.metadata.fullPath;
+  // const responsePhoto = await uploadFile(photos, `images/${fileName}`);
+  // const fullPath = responsePhoto.metadata.fullPath;
 
   return await addDoc(collection(database, 'shareFoods'), {
     title,
@@ -50,10 +50,10 @@ export const createShareFood = async (
     pickUpTime,
     caption,
     location,
-    photo: fullPath,
+    // photo: fullPath,
     createdAt: serverTimestamp(),
     status: 'open',
-    user: { displayName, uid, photoUrl },
+    user: user,
   });
 };
 

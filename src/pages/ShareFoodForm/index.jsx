@@ -16,6 +16,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase/init';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
+import { createShareFood } from '../../firebase/api/shareFood';
 
 const validationSchema = yup.object({
   title: yup
@@ -60,7 +61,8 @@ const ShareFoodForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log(values);
+      const {title, location, bought, expired, condition, pickup, caption} = values
+      const response = await createShareFood(title, bought, expired, condition, pickup, caption, location, user);
     },
   });
 
