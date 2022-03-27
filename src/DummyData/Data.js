@@ -1,6 +1,7 @@
 export const data = [
   {
     id: 1,
+    name: "james",
     date: "March, 9 2022",
     content: "How to manage food waste effectively",
     article: [
@@ -11,6 +12,7 @@ export const data = [
   },
   {
     id: 2,
+    name: "mikha",
     date: "March, 10 2022",
     content: "How to make your food look good",
     article: [
@@ -21,6 +23,7 @@ export const data = [
   },
   {
     id: 3,
+    name: "john doe",
     date: "March, 11 2022",
     content: "5 things to do before eat!",
     article: [
@@ -31,6 +34,7 @@ export const data = [
   },
   {
     id: 4,
+    name: "ian muhammad",
     date: "March, 12 2022",
     content: "How to manage food waste effectively",
     article: [
@@ -41,6 +45,7 @@ export const data = [
   },
   {
     id: 5,
+    name: "sally",
     date: "March, 13 2022",
     content: "How to manage food waste effectively",
     article: [
@@ -51,6 +56,7 @@ export const data = [
   },
   {
     id: 6,
+    name: "yourika",
     date: "March, 14 2022",
     content: "How to manage food waste effectively",
     article: [
@@ -61,6 +67,7 @@ export const data = [
   },
   {
     id: 7,
+    name: "ali",
     date: "March, 15 2022",
     content: "How to manage food waste effectively",
     article: [
@@ -71,6 +78,7 @@ export const data = [
   },
   {
     id: 8,
+    name: "qwerty",
     date: "March, 16 2022",
     content: "How to manage food waste effectively",
     article: [
@@ -81,6 +89,7 @@ export const data = [
   },
   {
     id: 9,
+    name: "yonamisa",
     date: "March, 17 2022",
     content: "How to manage food waste effectively",
     article: [

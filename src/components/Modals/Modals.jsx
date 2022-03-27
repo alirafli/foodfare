@@ -35,7 +35,7 @@ const Modals = ({
       <Card sx={{ maxWidth: 300, boxShadow: 3, mx: 3, my: 3, borderRadius: 5 }}>
         <CardContent>
           <Typography variant="h1" sx={{ mb: 2 }}>
-            your name
+            {username}
           </Typography>
           <CardMedia
             component="img"
