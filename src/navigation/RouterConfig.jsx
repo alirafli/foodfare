@@ -10,6 +10,7 @@ import {
   ARTICLE,
   BIGDONATION,
   BIGDONATIONFORM,
+  MODAL,
 } from "./Path";
 
 //pages
@@ -21,6 +22,7 @@ import BigDonationForm from "../pages/BigDonationForm";
 import Education from "../pages/EducationPage/EducationPage";
 import Article from "../pages/Article/Article";
 import Navbar from "../components/Navbar/Navbar";
+import Modals from "../components/Modals/Modals";
 
 export const RouterConfig = () => {
   return (
@@ -75,10 +77,16 @@ export const RouterConfig = () => {
           }
         />
       </Route>
-      <Route path={EDUCATION} element={<div>
-        <Navbar />
-        <Education />
-      </div>} />
+      <Route
+        path={EDUCATION}
+        element={
+          <div>
+            <Navbar />
+            <Education />
+          </div>
+        }
+      />
+      <Route path={MODAL} element={<Modals />} />
     </Routes>
   );
 };
