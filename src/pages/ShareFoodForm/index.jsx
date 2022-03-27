@@ -18,17 +18,28 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 
 const validationSchema = yup.object({
-  address: yup.string('Enter your address').required('address is required'),
-  phone: yup
-    .string('Enter your phone number')
-    .required('phone number is required'),
-  amount: yup
-    .number('Enter your description')
-    .min(1, 'donation minimum is 1')
-    .required('description is required'),
-  description: yup
-    .string('Enter your description')
-    .required('description is required'),
+  title: yup
+  .string('Enter your title')
+  .required('title is required'),
+  location: yup
+    .string('Enter your location')
+    .required('location is required'),
+  bought: yup
+    .string('Enter your bought')
+    .required('bought is required'),
+  expired: yup
+    .string('Enter your expired')
+    .required('expired is required'),
+  condition: yup
+    .string('Enter your condition')
+    .required('condition is required'),
+  pickup: yup
+    .string('Enter your pickup')
+    .required('pickup is required'),
+  caption: yup
+    .string('Enter your caption')
+    .required('caption is required'),
+
 });
 
 const ShareFoodForm = () => {
@@ -39,23 +50,17 @@ const ShareFoodForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      address: '',
-      phone: '',
-      amount: 0,
-      description: '',
+      title: '',
+      location: '',
+      bought: '',
+      expired: '',
+      condition: '',
+      pickup: '',
+      caption: '',
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const { address, phone, amount, description } = values;
-      const response = await createBigDonation(
-        description,
-        address,
-        phone,
-        'test',
-        'name',
-        '1243123'
-      );
-      console.log(response);
+      console.log(values);
     },
   });
 
@@ -78,11 +83,13 @@ const ShareFoodForm = () => {
           >
             <Grid item sm={6}>
               <TextField
-                sx={{ borderRadius: 20 }}
-                id="name"
+                id="title"
                 label="Title"
                 variant="outlined"
                 onChange={formik.handleChange}
+                value={formik.values.title}
+                error={formik.touched.title && Boolean(formik.errors.title)}
+                helperText={formik.touched.title && formik.errors.title}
                 fullWidth
               />
             </Grid>
@@ -92,9 +99,9 @@ const ShareFoodForm = () => {
                 label="Location"
                 variant="outlined"
                 onChange={formik.handleChange}
-                value={formik.values.address}
-                error={formik.touched.address && Boolean(formik.errors.address)}
-                helperText={formik.touched.address && formik.errors.address}
+                value={formik.values.location}
+                error={formik.touched.location && Boolean(formik.errors.location)}
+                helperText={formik.touched.location && formik.errors.location}
                 fullWidth
               />
             </Grid>
@@ -104,9 +111,9 @@ const ShareFoodForm = () => {
                 label="Bought Date"
                 variant="outlined"
                 onChange={formik.handleChange}
-                value={formik.values.address}
-                error={formik.touched.address && Boolean(formik.errors.address)}
-                helperText={formik.touched.address && formik.errors.address}
+                value={formik.values.bought}
+                error={formik.touched.bought && Boolean(formik.errors.bought)}
+                helperText={formik.touched.bought && formik.errors.bought}
                 fullWidth
               />
             </Grid>
@@ -116,9 +123,9 @@ const ShareFoodForm = () => {
                 label="Expired Date"
                 variant="outlined"
                 onChange={formik.handleChange}
-                value={formik.values.phone}
-                error={formik.touched.phone && Boolean(formik.errors.phone)}
-                helperText={formik.touched.phone && formik.errors.phone}
+                value={formik.values.expired}
+                error={formik.touched.expired && Boolean(formik.errors.expired)}
+                helperText={formik.touched.expired && formik.errors.expired}
                 fullWidth
               />
             </Grid>
@@ -128,9 +135,9 @@ const ShareFoodForm = () => {
                 label="Condition"
                 variant="outlined"
                 onChange={formik.handleChange}
-                value={formik.values.amount}
-                error={formik.touched.amount && Boolean(formik.errors.amount)}
-                helperText={formik.touched.amount && formik.errors.amount}
+                value={formik.values.condition}
+                error={formik.touched.condition && Boolean(formik.errors.condition)}
+                helperText={formik.touched.condition && formik.errors.condition}
                 fullWidth
               />
             </Grid>
@@ -140,42 +147,23 @@ const ShareFoodForm = () => {
                 label="Pick Up Time"
                 variant="outlined"
                 onChange={formik.handleChange}
-                value={formik.values.description}
-                error={
-                  formik.touched.description &&
-                  Boolean(formik.errors.description)
-                }
-                helperText={
-                  formik.touched.description && formik.errors.description
-                }
+                value={formik.values.pickup}
+                error={formik.touched.pickup && Boolean(formik.errors.pickup)}
+                helperText={formik.touched.pickup && formik.errors.pickup}
                 fullWidth
               />
             </Grid>
             <Grid item sm={6}>
               <TextField
-                id="condition"
+                id="caption"
                 multiline
                 label="Caption"
                 minRows={4}
                 variant="outlined"
                 onChange={formik.handleChange}
-                value={formik.values.amount}
-                error={formik.touched.amount && Boolean(formik.errors.amount)}
-                helperText={formik.touched.amount && formik.errors.amount}
-                fullWidth
-              />
-            </Grid>
-            <Grid item sm={6}>
-              <TextField
-                id="condition"
-                multiline
-                label="Caption"
-                minRows={4}
-                variant="outlined"
-                onChange={formik.handleChange}
-                value={formik.values.amount}
-                error={formik.touched.amount && Boolean(formik.errors.amount)}
-                helperText={formik.touched.amount && formik.errors.amount}
+                value={formik.values.caption}
+                error={formik.touched.caption && Boolean(formik.errors.caption)}
+                helperText={formik.touched.caption && formik.errors.caption}
                 fullWidth
               />
             </Grid>
