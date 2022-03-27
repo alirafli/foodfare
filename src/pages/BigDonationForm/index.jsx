@@ -14,9 +14,14 @@ import { useFormik } from 'formik';
 import { createBigDonation } from '../../firebase/api/bigDonation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase/init';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = yup.object({
   address: yup.string('Enter your address').required('address is required'),
+  name: yup
+    .string('enter name')
+    .required('name is required'),
   phone: yup
     .string('Enter your phone number')
     .required('phone number is required'),
@@ -31,9 +36,11 @@ const validationSchema = yup.object({
 
 const BigDonationForm = () => {
   const [user, loading, error] = useAuthState(auth);
-  
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
+      name: '',
       address: '',
       phone: '',
       amount: 0,
@@ -41,9 +48,13 @@ const BigDonationForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      const {address, phone, amount, description} = values;
-      const response = await createBigDonation(description, address, phone, "test", 'name', '1243123')
-      console.log(response); 
+      const {name,address, phone, amount, description} = values;
+      const response = await createBigDonation(description, address, phone, name, user.uid)
+      if(response){
+        enqueueSnackbar('Submited successfull', { variant: 'success' });
+        navigate(`/`);
+
+      }
     },
   });
 
@@ -70,6 +81,9 @@ const BigDonationForm = () => {
                 label="Name"
                 variant="outlined"
                 onChange={formik.handleChange}
+                value={formik.values.name}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name}
                 fullWidth
               />
             </Grid>
