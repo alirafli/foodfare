@@ -10,6 +10,7 @@ import {
   ARTICLE,
   BIGDONATION,
   FORM,
+  SHAREFOOD,
 } from "./Path";
 
 //pages
@@ -20,6 +21,8 @@ import BigDonation from "../pages/BigDonation";
 import BigDonationForm from "../pages/BigDonationForm";
 import Education from "../pages/EducationPage/EducationPage";
 import Article from "../pages/Article/Article";
+import ShareFood from "../pages/ShareFood";
+import ShareFoodForm from "../pages/ShareFoodForm";
 
 export const RouterConfig = () => {
   return (
@@ -32,6 +35,10 @@ export const RouterConfig = () => {
       <Route path={BIGDONATION}>
         <Route index element={<BigDonation />} />
         <Route path={FORM} element={<BigDonationForm />} />
+      </Route>
+      <Route path={SHAREFOOD}>
+        <Route index element={<ShareFood />} />
+        <Route path={FORM} element={<ShareFoodForm />} />
       </Route>
       <Route path={EDUCATION} element={<Education />} />
     </Routes>
