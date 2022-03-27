@@ -9,7 +9,8 @@ import {
   EDUCATION,
   ARTICLE,
   BIGDONATION,
-  FORM,
+  BIGDONATIONFORM,
+  MODAL,
   SHAREFOOD,
 } from "./Path";
 
@@ -21,26 +22,82 @@ import BigDonation from "../pages/BigDonation";
 import BigDonationForm from "../pages/BigDonationForm";
 import Education from "../pages/EducationPage/EducationPage";
 import Article from "../pages/Article/Article";
-import ShareFood from "../pages/ShareFoodFunction";
-import ShareFoodForm from "../pages/ShareFoodForm";
+import Navbar from "../components/Navbar/Navbar";
+import Modals from "../components/Modals/Modals";
+import ShareFood from "../pages/ShareFood/ShareFood";
 
 export const RouterConfig = () => {
   return (
     <Routes>
       <Route exact path={LOGIN} element={<Login />} />
-      <Route path={HOME} element={<Homepage />} />
       <Route path={REGISTER} element={<Register />} />
-      <Route exact path={EDUCATION} element={<Education />} />
-      <Route path={ARTICLE} element={<Article />} />
+      <Route
+        path={HOME}
+        element={
+          <div>
+            <Navbar />
+            <Homepage />
+          </div>
+        }
+      />
+      <Route
+        exact
+        path={EDUCATION}
+        element={
+          <div>
+            <Navbar />
+            <Education />
+          </div>
+        }
+      />
+      <Route
+        path={ARTICLE}
+        element={
+          <div>
+            <Navbar />
+            <Article />
+          </div>
+        }
+      />
       <Route path={BIGDONATION}>
-        <Route index element={<BigDonation />} />
-        <Route path={FORM} element={<BigDonationForm />} />
+        <Route
+          index
+          element={
+            <div>
+              <Navbar />
+              <BigDonation />
+            </div>
+          }
+        />
+        <Route
+          path={BIGDONATIONFORM}
+          element={
+            <div>
+              <Navbar />
+              <BigDonationForm />
+            </div>
+          }
+        />
       </Route>
-      <Route path={SHAREFOOD}>
-        <Route index element={<ShareFood />} />
-        <Route path={FORM} element={<ShareFoodForm />} />
-      </Route>
-      <Route path={EDUCATION} element={<Education />} />
+      <Route
+        path={EDUCATION}
+        element={
+          <div>
+            <Navbar />
+            <Education />
+          </div>
+        }
+      />
+      <Route
+        path={SHAREFOOD}
+        element={
+          <div>
+            <Navbar />
+            <ShareFood />
+          </div>
+        }
+      />
+      <Route path={MODAL} element={<Modals />} />
     </Routes>
   );
 };

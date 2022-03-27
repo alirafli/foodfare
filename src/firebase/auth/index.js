@@ -26,4 +26,4 @@ export const loginWithGoogle = () => {
   return signInWithPopup(auth, provider);
 };
 
-export const logout = () => signOut(auth);
+export const logout = () => (signOut(auth));

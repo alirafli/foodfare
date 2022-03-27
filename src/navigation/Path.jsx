@@ -5,4 +5,5 @@ export const BIGDONATION = "/donation";
 export const ARTICLE = "/education/details/:id";
 export const FORM = "form";
 export const EDUCATION = "/education";
-export const SHAREFOOD = "/sharefood";
+export const MODAL = "/modal";
+export const SHAREFOOD = "/share-food";
