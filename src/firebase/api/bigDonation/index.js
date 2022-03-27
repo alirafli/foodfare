@@ -6,6 +6,7 @@ export const createBigDonation = async (
   address,
   phoneNumber,
   pickUpTime,
+  name,
   uid
 ) => {
 
@@ -14,6 +15,7 @@ export const createBigDonation = async (
 		address,
 		phoneNumber,
 		pickUpTime,
+    name,
 		uid
   });
 };
