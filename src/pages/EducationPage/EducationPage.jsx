@@ -4,6 +4,7 @@ import Dummy from "../../assets/dummyFood.png";
 import { useStyles } from "./Style";
 import Card from "../../components/CustomCard";
 import { data } from "../../DummyData/Data";
+import { Link } from "react-router-dom";
 
 const EducationPage = () => {
   const classes = useStyles();
@@ -17,15 +18,22 @@ const EducationPage = () => {
       </Typography>
       <Grid container sx={{ width: "70%", mx: "auto" }} justifyContent="center">
         {DummyData.map((data, i) => (
-          <Grid item lg={4}>
-            <Card
+          <Grid item lg={4} key={i}>
+            <Link
               key={i}
-              date={data.date}
-              useImage
-              img={Dummy}
-              bold
-              content={data.content}
-            />
+              to={`/education/details/${data.id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Card
+                date={data.date}
+                useImage
+                img={Dummy}
+                bold
+                key={i}
+                content={data.content}
+                id={data.id}
+              />
+            </Link>
           </Grid>
         ))}
       </Grid>
