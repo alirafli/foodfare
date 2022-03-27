@@ -56,6 +56,7 @@ export const THEME = createTheme({
 });
 
 THEME.typography.title = {
+  fontFamily: "Inter, Arial",
   fontSize: 64,
   fontWeight: "bold",
   color: "#595959",
