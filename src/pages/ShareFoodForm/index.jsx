@@ -14,6 +14,9 @@ import { useFormik } from 'formik';
 import { createBigDonation } from '../../firebase/api/bigDonation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase/init';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
+
 
 const validationSchema = yup.object({
   address: yup.string('Enter your address').required('address is required'),
@@ -32,6 +35,9 @@ const validationSchema = yup.object({
 const ShareFoodForm = () => {
   const [user, loading, error] = useAuthState(auth);
   
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       address: '',
