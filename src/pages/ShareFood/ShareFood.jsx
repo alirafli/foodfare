@@ -7,6 +7,7 @@ import { data } from "../../DummyData/Data";
 import { Link } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 import ModalItem from "../../components/Modals/Modals";
+import Button from "../../components/CustomButton";
 
 const ShareFood = () => {
   const [open, setOpen] = useState(false);
@@ -50,7 +51,7 @@ const ShareFood = () => {
       ))}
 
       {DummyData.filter((x) => x.id == content).map((e, i) => (
-        <Box key={i} >
+        <Box key={i}>
           <Modal
             open={open}
             onClose={handleClose}
@@ -61,6 +62,18 @@ const ShareFood = () => {
           </Modal>
         </Box>
       ))}
+      <Box
+        sx={{
+          width: "100vw",
+          position: "sticky",
+          top: 80,
+          bottom: 0,
+          right: 100,
+          left: 0,
+        }}
+      >
+        <Button content="+" ternary />
+      </Box>
     </Grid>
   );
 };
