@@ -9,9 +9,9 @@ import {
   EDUCATION,
   ARTICLE,
   BIGDONATION,
-  BIGDONATIONFORM,
   MODAL,
   SHAREFOOD,
+  FORM,
 } from "./Path";
 
 //pages
@@ -70,7 +70,7 @@ export const RouterConfig = () => {
           }
         />
         <Route
-          path={BIGDONATIONFORM}
+          path={FORM}
           element={
             <div>
               <Navbar />
