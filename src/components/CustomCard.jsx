@@ -7,6 +7,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import Button from "./CustomButton";
+import { Link } from "react-router-dom";
 
 const CustomCard = ({
   title,
@@ -18,6 +19,7 @@ const CustomCard = ({
   bold,
   img = "defaut image",
   btnContent = "click me",
+  linkTo = "/",
 }) => {
   return (
     <Card
@@ -41,7 +43,11 @@ const CustomCard = ({
         </Typography>
       </CardContent>
       <CardActions>
-        {useBtn && <Button ternary content={btnContent} />}
+        {useBtn && (
+          <Link to={linkTo} style={{ width: "100%", textDecoration: "none" }}>
+            <Button ternary content={btnContent} />
+          </Link>
+        )}
       </CardActions>
     </Card>
   );

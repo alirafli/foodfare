@@ -34,13 +34,13 @@ export const createShareFood = async (
   pickUpTime,
   caption,
   location,
-  photos,
-  { displayName, uid, photoUrl }
+  photo,
+  {uid, photoURL, displayName}
 ) => {
   const fileName = uuidv4();
 
-  const responsePhoto = await uploadFile(photos, `images/${fileName}`);
-  const fullPath = responsePhoto.metadata.fullPath;
+  // const responsePhoto = await uploadFile(photos, `images/${fileName}`);
+  // const fullPath = responsePhoto.metadata.fullPath;
 
   return await addDoc(collection(database, 'shareFoods'), {
     title,
@@ -50,10 +50,10 @@ export const createShareFood = async (
     pickUpTime,
     caption,
     location,
-    photo: fullPath,
+    photo: photo,
     createdAt: serverTimestamp(),
     status: 'open',
-    user: { displayName, uid, photoUrl },
+    user: {uid, photoURL, displayName}
   });
 };
 
@@ -79,6 +79,21 @@ export const getSharefoods = async (page) => {
     shareFoodsData.push(doc.data());
   });
 
+  // const DataWithPhotoLink = shareFoodsData.map(async (data) => {
+  //   const photo = data.photos;
+  //   const photoLink = await getDownloadURL(
+  //     ref(storage, `${STORAGELINK}/${photo}`)
+  //   ).catch((err) => {});
+  //   return {
+  //     ...data,
+  //     photos: photoLink,
+  //   };
+  // });
+  return shareFoodsData;
+};
+
+export const getSharefoodsPhotos = async (shareFoodsData) => {
+
   const DataWithPhotoLink = shareFoodsData.map(async (data) => {
     const photo = data.photos;
     const photoLink = await getDownloadURL(
@@ -90,4 +105,4 @@ export const getSharefoods = async (page) => {
     };
   });
   return DataWithPhotoLink;
-};
+}
