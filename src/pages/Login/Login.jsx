@@ -8,6 +8,9 @@ import FieldInput from "../../components/FieldInput";
 import Button from "../../components/CustomButton";
 import Jumbotron from "../../assets/loginPage.svg";
 import { useStyles } from "./LoginStyle";
+import { useSnackbar } from 'notistack';
+import { login } from "../../firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
   email: yup
@@ -22,13 +25,24 @@ const validationSchema = yup.object({
 
 const Login = () => {
   const classes = useStyles();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      const {email, password} = values;
+      const response = await login(email, password).catch((err) => {
+        console.log(err.message);
+        enqueueSnackbar(err.message, {variant: "error"});
+      });
+      if(response){
+        enqueueSnackbar("login successfull", {variant: "success"});
+        navigate(`/`);
+      }
     },
   });
 
