@@ -9,6 +9,7 @@ import Button from "../../components/CustomButton";
 import Jumbotron from "../../assets/registerPage.svg";
 import { useStyles } from "./RegisterStyle";
 import { register } from "../../firebase/auth";
+import { useSnackbar } from 'notistack';
 
 const validationSchema = yup.object({
   name: yup.string("Enter your name").required("Your name is required"),
@@ -30,6 +31,7 @@ const validationSchema = yup.object({
 
 const Register = () => {
   const classes = useStyles();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -42,7 +44,11 @@ const Register = () => {
       const {email, password} = values;
       const response = await register(email, password).catch((err) => {
         console.log(err.message);
+        enqueueSnackbar(err.message, {variant: "error"});
       });
+      if(response){
+        enqueueSnackbar("register successfull", {variant: "success"});
+      }
     },
   });
   return (
