@@ -61,6 +61,9 @@ const Register = () => {
         enqueueSnackbar(err.message, { variant: 'error' });
       });
       if (response) {
+        
+        const auth = getAuth();
+        console.log(auth.currentUser);
         enqueueSnackbar('register successfull', { variant: 'success' });
         navigate(`/`);
       }
