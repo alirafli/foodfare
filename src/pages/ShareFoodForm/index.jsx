@@ -194,9 +194,9 @@ const ShareFoodForm = () => {
                 minRows={4}
                 variant="outlined"
                 onChange={formik.handleChange}
-                value={formik.values.caption}
-                error={formik.touched.caption && Boolean(formik.errors.caption)}
-                helperText={formik.touched.caption && formik.errors.caption}
+                value={formik.values.photo}
+                error={formik.touched.photo && Boolean(formik.errors.photo)}
+                helperText={formik.touched.photo && formik.errors.photo}
                 fullWidth
               />
             </Grid>

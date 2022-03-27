@@ -24,7 +24,7 @@ const ShareFood = () => {
 
   useEffect(async () => {
     const data = await getSharefoods();
-    // console.log(data)
+    console.log(data)
     setFoodList(data);
   }, []);
 
@@ -34,30 +34,30 @@ const ShareFood = () => {
       sx={{ width: "70%", mx: "auto", mt: 15 }}
       justifyContent="center"
     >
-      {DummyData.map((data, i) => (
+      {foodList.map((data, i) => (
         <Grid
           item
           lg={4}
           key={i}
           onClick={() => {
             handleOpen();
-            setContent(data.id);
+            setContent(i);
           }}
           sx={{ cursor: "pointer" }}
         >
           <Card
-            date={data.date}
+            date={data.expiredDate}
             useImage
             img={Dummy}
             bold
             key={i}
-            content={data.content}
-            id={data.id}
+            content={data.title}
+            id={i}
           />
         </Grid>
       ))}
 
-      {DummyData.filter((x) => x.id == content).map((e, i) => (
+      {foodList.filter((x, i) => i == content).map((e, i) => (
         <Box key={i}>
           <Modal
             open={open}
@@ -65,7 +65,7 @@ const ShareFood = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <ModalItem title={e.content} username={e.name} />
+            <ModalItem title={e.title} username="ian" />
           </Modal>
         </Box>
       ))}
