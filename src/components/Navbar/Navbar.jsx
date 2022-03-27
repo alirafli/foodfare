@@ -4,9 +4,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import Button from "../../components/CustomButton";
+import LOGO from "../../assets/navbarLogo.svg";
 const pagesUser = ["Share", "Donate", "Article", "About Us"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -15,21 +14,17 @@ const Navbar = () => {
   // console.log(user, loading, error)
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" sx={{backgroundColor: "#fff"}}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
+          <Box sx={{ flexGrow: 1 }}>
+            <img src={LOGO} alt="" />
+          </Box>
+          <Box sx={{ mx: 1 }}>
+            <Button content="Sign Up" fullWidth />
+          </Box>
+          <Box sx={{ mx: 1 }}>
+            <Button content="Login" fullWidth />
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>
